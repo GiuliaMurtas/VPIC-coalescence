@@ -923,12 +923,9 @@ begin_initialization {
     // The normal(range(0), 0, with) function in c
 
     gu1 = sqrt(1.0+upa1*upa1+upe1*upe1+uz1*uz1);
-    ux = UEDX;
-    uy = UEDY;
-    uz = UEDZ;
-    //ux = (GVD*upa1*VDX/VD - upe1*VDY/VD) + GVD*VDX*gu1;
-    //uy = (GVD*upa1*VDY/VD + upe1*VDX/VD) + GVD*VDY*gu1;
-    //uz = uz1;
+    ux = upa1 + UEDX;
+    uy = upe1 + UEDY;
+    uz = uz1 + UEDZ;
 
     //inject_particle(electron, x, y, z, ux*cs+uy*sn, -ux*sn+uy*cs, uz, weight, 0, 0);
     inject_particle(electron, x, y, z, ux, uy, uz, weight, 0, 0);
@@ -946,9 +943,9 @@ begin_initialization {
 #else
     // Assume ions have the same drift as electrons
     gu1 = sqrt(1.0+upa1*upa1+upe1*upe1+uz1*uz1);
-    ux = UIDX;
-    uy = UIDY;
-    uz = UIDZ;
+    ux = upa1 + UIDX;
+    uy = upe1 + UIDY;
+    uz = uz1 + UIDZ;
 #endif
 
     // inject_particle(ion, x, y, z, ux*cs+uy*sn, -ux*sn+uy*cs, uz, weight, 0, 0);
